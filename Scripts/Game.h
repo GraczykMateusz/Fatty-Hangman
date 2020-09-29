@@ -11,13 +11,14 @@ class Game {
     boost::property_tree::ptree pt;
 
   public:
-    Game() = default;
+    Game();
     virtual ~Game() = default;
     
     virtual void showMenu() const;
 
     virtual void startGame() const = 0;
     virtual void addQuest();
+    virtual void displayQuest();
     virtual void displayAllQuest();
     virtual void delQuest();
     virtual void delAllQuest();
