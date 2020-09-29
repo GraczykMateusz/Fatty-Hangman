@@ -18,10 +18,9 @@ class Game {
 
     virtual void startGame() const = 0;
     virtual void addQuest();
-    virtual void displayQuest();
     virtual void displayAllQuest();
-    virtual void delQuest();
-    virtual void delAllQuest();
+    virtual bool delQuest();
+    virtual bool delAllQuest();
 
     virtual unsigned int input() const;
     virtual void back() const;

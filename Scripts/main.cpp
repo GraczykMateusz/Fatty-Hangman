@@ -1,6 +1,5 @@
 #include <iostream>
 #include <memory>
-#include <stdlib.h>
 
 #include "Game.h"
 #include "Hangman.h"
@@ -23,21 +22,17 @@ int main() {
         break;
       case 3:
         system("clear");
-        hangmanGame->displayQuest();
+        hangmanGame->displayAllQuest();
         break;
       case 4:
         system("clear");
-        hangmanGame->displayAllQuest();
+        hangmanGame->delQuest();
         break;
       case 5:
         system("clear");
-        hangmanGame->delQuest();
-        break;
-      case 6:
-        system("clear");
         hangmanGame->delAllQuest();
         break;
-      case 7:
+      case 6:
         return 0;
         break;
       default:
@@ -45,12 +40,3 @@ int main() {
     }
   } while(true);
 }
-
-/*
-   -------
-   |     |
-   |    \O/
-   |    ( )
-  / \   /'\ 
- /   \
-*/
