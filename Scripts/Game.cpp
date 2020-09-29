@@ -6,6 +6,9 @@
 
 #include "Game.h"
 
+boost::property_tree::ptree Game::pt;
+const std::string Game::questionsPath = "../QuestionsDir/Questions.json";
+
 Game::Game() {
   boost::property_tree::read_json(questionsPath, pt);
 }
@@ -127,16 +130,14 @@ bool Game::delQuest() {
     boost::property_tree::write_json(questionsPath, pt);
     
     std::cout << "Successfully removed!\n";
-    
-    back();
-    return true;
   
   } catch(const std::exception& e) {
     std::cout << "Make sure the location of the questions file is there:\n"
               << questionsPath
               << "\n";
-    return false;
   }
+  back();
+  return true;
 }
 
 bool Game::delAllQuest() {
@@ -159,15 +160,13 @@ bool Game::delAllQuest() {
  
     std::cout << "Successfully removed!\n";
 
-    back();
-    return true;
-
   } catch(const std::exception& e) {
     std::cout << "Make sure the location of the questions file is there:\n"
               << questionsPath
               << "\n";
-    return false;
   }
+  back();
+  return true;
 }
 
 /*----QUESTIONS-MANAGEMENT-END----*/

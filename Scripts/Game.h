@@ -7,8 +7,8 @@
 
 class Game {
   private:
-    const std::string questionsPath = "../QuestionsDir/Questions.json";
-    boost::property_tree::ptree pt;
+    static const std::string questionsPath;
+    static boost::property_tree::ptree pt;
 
   public:
     Game();
@@ -21,6 +21,9 @@ class Game {
     virtual void displayAllQuest();
     virtual bool delQuest();
     virtual bool delAllQuest();
+
+    static boost::property_tree::ptree& getPt() { return pt; }
+    static const std::string& getQuestionsPath() { return questionsPath; }
 
     virtual unsigned int input() const;
     virtual void back() const;
