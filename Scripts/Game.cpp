@@ -42,12 +42,20 @@ void Game::showMenu() const {
 
 /*---------MENU-MOVEMENT----------*/
 unsigned int Game::input() const {
-  unsigned int input;
+  std::string input;
 
   std::cout << "Select: ";
-  std::cin >> input;
+  std::getline(std::cin, input);
   
-  return input;
+  try
+  {
+    auto in = std::stoi(input);
+    return in;
+  }
+  catch(const std::exception& e)
+  {
+    return -1;
+  }
 } 
 void Game::back() const {
   std::cout << "\n0.Back\n";
@@ -64,10 +72,10 @@ void Game::addQuest() {
     std::string category, answer;
 
     std::cout << "Category: ";
-    std::cin >> category;
+    std::getline(std::cin, category);
 
     std::cout << "Answer: ";
-    std::cin >> answer;
+    std::getline(std::cin, answer);
 
     boost::property_tree::ptree newQuest;
     newQuest.put("Category", category);
@@ -107,7 +115,7 @@ void Game::displayAllQuest() {
                     << " = "
                     << property.second.get_value < std::string > () << "\n";
       }
-      std::cout << "=================================\n";
+      std::cout << "============================================\n";
     }
   } catch(const std::exception& e) {
     std::cout << "Make sure the location of the questions file is there:\n"
@@ -125,7 +133,7 @@ bool Game::delQuest() {
               << "Question id: ";
 
     std::string questId;
-    std::cin >> questId;
+    std::getline(std::cin, questId);
     
     auto find = pt.find(questId);
 
@@ -154,14 +162,18 @@ bool Game::delAllQuest() {
   try {
     boost::property_tree::read_json(questionsPath, pt);    
 
-    char youSure;
+    std::string youSure;
     do {
       std::cout << "Are you sure to delete all questions? Y/N\n"
                 << "Select: ";
-      std::cin >> youSure;
-    } while(youSure != 'Y' && youSure != 'y' && youSure != 'N' && youSure != 'n');
+      std::getline(std::cin, youSure);
+    } while((youSure[0] != 'Y'
+          && youSure[0] != 'y'
+          && youSure[0] != 'N'
+          && youSure[0] != 'n')
+          || youSure.length() != 1);
 
-    if(youSure == 'N' || youSure == 'n')
+    if(youSure[0] == 'N' || youSure[0] == 'n')
       return false;
 
     pt.clear();
