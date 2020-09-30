@@ -1,6 +1,8 @@
 #ifndef HANGMAN_H
 #define HANGMAN_H
 
+#include <vector>
+
 #include "Game.h"
 
 class Hangman : public Game {
@@ -8,9 +10,13 @@ class Hangman : public Game {
   static boost::property_tree::ptree pt;
   
   std::string id;
-  std::string question;
+  std::string category;
   std::string answer;
   
+  std::vector<char> answerVec;
+  
+  void randQuest();
+
   public:
     Hangman();
     bool startGame() override;

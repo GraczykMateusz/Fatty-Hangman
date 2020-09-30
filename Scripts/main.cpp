@@ -22,17 +22,21 @@ int main() {
         break;
       case 3:
         system("clear");
-        hangmanGame->displayAllQuest();
+        hangmanGame->displayQuest();
         break;
       case 4:
         system("clear");
-        hangmanGame->delQuest();
+        hangmanGame->displayAllQuest();
         break;
       case 5:
         system("clear");
-        hangmanGame->delAllQuest();
+        hangmanGame->delQuest();
         break;
       case 6:
+        system("clear");
+        hangmanGame->delAllQuest();
+        break;
+      case 7:
         return 0;
         break;
       default:

@@ -39,7 +39,7 @@ bool Hangman::startGame() {
     back();
     return false;
   }
-
+  
   int questIterNum;
   auto randQuest = [&questIterNum]() {
     std::random_device rd;
@@ -54,52 +54,194 @@ bool Hangman::startGame() {
   
   boost::property_tree::ptree::iterator it = pt.begin();
 
+  //set correct category
   for(int i = 0; i < questIterNum; ++i) 
     ++it;
 
   id = it->first;
-  std::cout << "Id = "
-            << id
-            << "\n";
 
   auto it2 = it->second.begin();
   
-  question = it2->second.get_value < std::string > ();
-  std::cout << it2->first
-            << " = "
-            << question 
-            << "\n\n";
+  category = it2->second.get_value < std::string > ();
 
-  ++it2;
+  auto it3 = it2;
 
-  answer = it2->second.get_value < std::string > ();
-  /*
-  std::cout << it2->first
-            << " = "
-            << answer
-            << "\n";
-  */
-  std::vector<char> a;
+  ++it3;
+
+  answer = it3->second.get_value < std::string > ();
+  
+  std::vector<char> answerVec;
 
   for(int i = 0; i < answer.length(); ++i) {
     if(answer[i] == ' ') {
-      a.push_back(answer[i]);
+      answerVec.push_back(answer[i]);
     } else {
-      a.push_back('+');
+      answerVec.push_back('+');
     }
-  }
-  for(auto& aa : a)
-    std::cout << aa;
-
-  std::cout << "\n";
+  }  
+  std::cout << "Characters used: "
+            << "\n";
 
   std::string inputAnswer;
+  int mistake = -1;
+  bool gameOver = false;
   do {
-      std::cout << "\nWrite letter or full answer: ";
-      std::getline(std::cin, inputAnswer);
-      std::transform(inputAnswer.begin(), inputAnswer.end(), inputAnswer.begin(), ::toupper);
-  } while(inputAnswer != answer && inputAnswer.length() != 1);
+      system("clear");
+      ++mistake;
+      //id
+      std::cout << "Id = "
+            << id
+            << "\n";
+      //category
+      std::cout << it2->first
+            << " = "
+            << category 
+            << "\n\n";
+      //answer
+      std::cout << "Answer:\n";
+      //+++ +++ +++
+      for(auto& character : answerVec)
+        std::cout << character;
+
+      std::cout << "\n";
+      //hangman disp
+      switch(mistake) {
+        case 0:
+          std::cout << " _________________ \n"
+                    << "|                 |\n"
+                    << "|                 |\n"
+                    << "|      LET'S      |\n"
+                    << "|      START      |\n"
+                    << "|       ...       |\n"
+                    << "|                 |\n"
+                    << "|_________________|\n\n";
+          break;
+        case 1:
+          std::cout << " _________________ \n"
+                    << "|                 |\n"
+                    << "|                 |\n"
+                    << "|                 |\n"
+                    << "|                 |\n"
+                    << "|                 |\n"
+                    << "|                 |\n"
+                    << "|___/___\\_________|\n\n";
+          break;
+        case 2:
+          std::cout << " _________________ \n"
+                    << "|                 |\n"
+                    << "|                 |\n"
+                    << "|                 |\n"
+                    << "|                 |\n"
+                    << "|                 |\n"
+                    << "|    / \\          |\n"
+                    << "|___/___\\_________|\n\n";
+          break;
+        case 3:
+          std::cout << " _________________ \n"
+                    << "|                 |\n"
+                    << "|                 |\n"
+                    << "|                 |\n"
+                    << "|                 |\n"
+                    << "|     |           |\n"
+                    << "|    / \\          |\n"
+                    << "|___/___\\_________|\n\n";
+          break;
+        case 4:
+          std::cout << " _________________ \n"
+                    << "|                 |\n"
+                    << "|                 |\n"
+                    << "|                 |\n"
+                    << "|     |           |\n"
+                    << "|     |           |\n"
+                    << "|    / \\          |\n"
+                    << "|___/___\\_________|\n\n";
+          break;
+        case 5:
+          std::cout << " _________________ \n"
+                    << "|                 |\n"
+                    << "|                 |\n"
+                    << "|     |           |\n"
+                    << "|     |           |\n"
+                    << "|     |           |\n"
+                    << "|    / \\          |\n"
+                    << "|___/___\\_________|\n\n";
+          break;
+        case 6:
+          std::cout << " _________________ \n"
+                    << "|                 |\n"
+                    << "|      _____      |\n"
+                    << "|     |           |\n"
+                    << "|     |           |\n"
+                    << "|     |           |\n"
+                    << "|    / \\          |\n"
+                    << "|___/___\\_________|\n\n";
+          break;
+        case 7:
+          std::cout << " _________________ \n"
+                    << "|                 |\n"
+                    << "|      _____      |\n"
+                    << "|     |     |     |\n"
+                    << "|     |           |\n"
+                    << "|     |           |\n"
+                    << "|    / \\          |\n"
+                    << "|___/___\\_________|\n\n";
+          break;
+        case 8:
+          std::cout << " _________________ \n"
+                    << "|                 |\n"
+                    << "|      _____      |\n"
+                    << "|     |     |     |\n"
+                    << "|     |     O     |\n"
+                    << "|     |           |\n"
+                    << "|    / \\          |\n"
+                    << "|___/___\\_________|\n\n";
+          break;
+        case 9:
+          std::cout << " _________________ \n"
+                    << "|                 |\n"
+                    << "|      _____      |\n"
+                    << "|     |     |     |\n"
+                    << "|     |     O     |\n"
+                    << "|     |    ( )    |\n"
+                    << "|    / \\          |\n"
+                    << "|___/___\\_________|\n\n";
+          break;
+        case 10:
+          std::cout << " _________________ \n"
+                    << "|                 |\n"
+                    << "|      _____      |\n"
+                    << "|     |     |     |\n"
+                    << "|     |    \\O/    |\n"
+                    << "|     |    ( )    |\n"
+                    << "|    / \\          |\n"
+                    << "|___/___\\_________|\n\n";
+          break;
+        case 11:
+          std::cout << " _________________ \n"
+                    << "|     *LOSER*     |\n"
+                    << "|      _____      |\n"
+                    << "|     |     |     |\n"
+                    << "|     |    \\O/    |\n"
+                    << "|     |    ( )    |\n"
+                    << "|    / \\   /'\\    |\n"
+                    << "|___/___\\_________|\n\n";
+          gameOver = true;
+          break;
+      }
+      //char used
+
+      if(gameOver != true) {
+        std::cout << "\nWrite letter or full answer: ";
+        std::getline(std::cin, inputAnswer);
+        std::transform(inputAnswer.begin(), inputAnswer.end(), inputAnswer.begin(), ::toupper);
+      } else {
+        std::cout << "\nYOU LOSE!";
+        back();
+        return false;
+      }
+  } while(inputAnswer != answer && inputAnswer.length() != 1 && gameOver != true);
   
+  std::cout << "\nCONGRATULATIONS YOU WON!";
   back();
   return true;
 }

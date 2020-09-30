@@ -18,6 +18,7 @@ class Game {
 
     virtual bool startGame() = 0;
     virtual void addQuest();
+    virtual bool displayQuest();
     virtual void displayAllQuest();
     virtual bool delQuest();
     virtual bool delAllQuest();

@@ -32,10 +32,11 @@ void Game::showMenu() const {
 
             << "1.Start\n"
             << "2.Add a question\n"
-            << "3.Display all questions\n"
-            << "4.Delete a question\n"
-            << "5.Delete all questions\n"
-            << "6.Quit\n\n";
+            << "3.Display a question\n"
+            << "4.Display all questions\n"
+            << "5.Delete a question\n"
+            << "6.Delete all questions\n"
+            << "7.Quit\n\n";
 }
 
 /*---------MENU-DISPLAY-END-------*/
@@ -100,6 +101,39 @@ void Game::addQuest() {
               << "\n";
   }
   back();
+}
+
+bool Game::displayQuest() {
+  try {
+    boost::property_tree::read_json(questionsPath, pt);
+    boost::property_tree::ptree::iterator it = pt.begin();
+
+    if(pt.empty())
+      std::cout << "The question file is empty!\n";
+
+    std::string id;
+    std::cout << "Id = ";
+    std::getline(std::cin, id);
+
+    for(auto& arr_element: pt) {
+      if(arr_element.first == id) {
+        for(auto& property: arr_element.second) {
+            std::cout << property.first
+                      << " = "
+                      << property.second.get_value < std::string > () << "\n";
+        }
+        back();
+        return true;
+      }
+    }
+    std::cout << "Cannot find a question!\n";
+  } catch(const std::exception& e) {
+    std::cout << "Make sure the location of the questions file is there:\n"
+              << questionsPath
+              << "\n";
+  }
+  back();
+  return false;
 }
 
 void Game::displayAllQuest() { 
