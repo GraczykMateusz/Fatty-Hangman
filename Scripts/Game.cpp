@@ -73,9 +73,11 @@ void Game::addQuest() {
 
     std::cout << "Category: ";
     std::getline(std::cin, category);
+    std::transform(category.begin(), category.end(), category.begin(), ::toupper);
 
     std::cout << "Answer: ";
     std::getline(std::cin, answer);
+    std::transform(answer.begin(), answer.end(), answer.begin(), ::toupper);
 
     boost::property_tree::ptree newQuest;
     newQuest.put("Category", category);

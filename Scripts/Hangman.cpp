@@ -1,5 +1,7 @@
 #include <iostream>
 #include <random>
+#include <vector>
+#include <boost/algorithm/string.hpp>
 #include <boost/property_tree/json_parser.hpp>
 #include <boost/uuid/uuid_generators.hpp>
 
@@ -66,18 +68,38 @@ bool Hangman::startGame() {
   std::cout << it2->first
             << " = "
             << question 
-            << "\n";
+            << "\n\n";
 
   ++it2;
 
   answer = it2->second.get_value < std::string > ();
+  /*
   std::cout << it2->first
             << " = "
             << answer
             << "\n";
-  
-  std::cout << answer.length();
+  */
+  std::vector<char> a;
 
+  for(int i = 0; i < answer.length(); ++i) {
+    if(answer[i] == ' ') {
+      a.push_back(answer[i]);
+    } else {
+      a.push_back('+');
+    }
+  }
+  for(auto& aa : a)
+    std::cout << aa;
+
+  std::cout << "\n";
+
+  std::string inputAnswer;
+  do {
+      std::cout << "\nWrite letter or full answer: ";
+      std::getline(std::cin, inputAnswer);
+      std::transform(inputAnswer.begin(), inputAnswer.end(), inputAnswer.begin(), ::toupper);
+  } while(inputAnswer != answer && inputAnswer.length() != 1);
+  
   back();
   return true;
 }
