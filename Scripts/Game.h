@@ -16,7 +16,7 @@ class Game {
     
     virtual void showMenu() const;
 
-    virtual void startGame() const = 0;
+    virtual bool startGame() = 0;
     virtual void addQuest();
     virtual void displayAllQuest();
     virtual bool delQuest();

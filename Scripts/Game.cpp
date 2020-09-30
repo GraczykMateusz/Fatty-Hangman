@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdlib.h>
 #include <boost/property_tree/json_parser.hpp>
 #include <boost/uuid/uuid.hpp>
 #include <boost/uuid/uuid_io.hpp>
@@ -10,7 +11,15 @@ boost::property_tree::ptree Game::pt;
 const std::string Game::questionsPath = "../QuestionsDir/Questions.json";
 
 Game::Game() {
-  boost::property_tree::read_json(questionsPath, pt);
+  try {
+    boost::property_tree::read_json(questionsPath, pt);
+  } catch(const std::exception& e) {
+    std::cout << "Game cannot starting without a questions file!\n"
+              << "Make sure the location of the questions file is there:\n"
+              << "../QuestionsDir/Questions.json"
+              << "\n";
+    exit(EXIT_FAILURE);
+  }
 }
 
 /*----------MENU-DISPLAY-----------*/
@@ -73,13 +82,14 @@ void Game::addQuest() {
 
     boost::property_tree::write_json(questionsPath, pt);
   
-    back();
+    std::cout << "Successfully added!\n";
 
   } catch(const std::exception& e) {
     std::cout << "Make sure the location of the questions file is there:\n"
               << questionsPath
               << "\n";
   }
+  back();
 }
 
 void Game::displayAllQuest() { 
@@ -90,7 +100,7 @@ void Game::displayAllQuest() {
       std::cout << "The question file is empty!\n";
 
     for(auto& arr_element: pt) {
-      std::cout << arr_element.first << "\n";
+      std::cout << "Id = " << arr_element.first << "\n";
 
       for(auto& property: arr_element.second) {
           std::cout << property.first
