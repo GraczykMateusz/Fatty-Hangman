@@ -8,7 +8,7 @@
 #include "Game.h"
 
 boost::property_tree::ptree Game::pt;
-const std::string Game::questionsPath = "../QuestionsDir/Questions.json";
+const std::string Game::questionsPath = "../questJson/Questions.json";
 
 Game::Game() {
   try {
@@ -16,7 +16,7 @@ Game::Game() {
   } catch(const std::exception& e) {
     std::cout << "Game cannot starting without a questions file!\n"
               << "Make sure the location of the questions file is there:\n"
-              << "../QuestionsDir/Questions.json"
+              << questionsPath
               << "\n";
     exit(EXIT_FAILURE);
   }
