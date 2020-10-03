@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/FattyHangman.dir/src/main.cpp.o CMakeFiles/FattyHangman.dir/src/Game.cpp.o  -o FattyHangman  libGame.a libHangman.a 

@@ -1,5 +1,0 @@
-/home/wm/Programs/FattyHangman/build/CMakeFiles/edit_cache.dir
-/home/wm/Programs/FattyHangman/build/CMakeFiles/Hangman.dir
-/home/wm/Programs/FattyHangman/build/CMakeFiles/Game.dir
-/home/wm/Programs/FattyHangman/build/CMakeFiles/rebuild_cache.dir
-/home/wm/Programs/FattyHangman/build/CMakeFiles/FattyHangman.dir
