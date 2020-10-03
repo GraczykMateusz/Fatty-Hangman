@@ -8,7 +8,7 @@
 #include "Game.h"
 
 boost::property_tree::ptree Game::pt;
-const std::string Game::questionsPath = "../questJson/Questions.json";
+const std::string Game::questionsPath = "../data/questions.json";
 
 Game::Game() {
   try {

@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/wm/Programs/FattyHangman/src/Game.cpp
+iostream
+-
+stdlib.h
+-
+boost/property_tree/json_parser.hpp
+-
+boost/uuid/uuid.hpp
+-
+boost/uuid/uuid_io.hpp
+-
+boost/uuid/uuid_generators.hpp
+-
+Game.h
+/home/wm/Programs/FattyHangman/src/Game.h
+
+/home/wm/Programs/FattyHangman/src/Game.h
+string
+-
+boost/property_tree/ptree.hpp
+-
+
