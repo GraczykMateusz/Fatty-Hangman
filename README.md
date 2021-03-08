@@ -1,4 +1,4 @@
-# CompanyManagement
+# Fatty Hangman
 Hello everyone!
 I would like to introduce to you my own 'Fatty Hangman' project. I wrote this for four days and I think the code is really bad especially in Hangman.cpp. But I keep it because the main reason for writing this project was to learn how to manage a JSON file. I also have learnt how to make exceptions and getline input. In the game can manage questions from the program (add/del/disp category and answer) and have fun with the gameplay. More informations and images you can see below:
 
